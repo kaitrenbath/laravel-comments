@@ -16,7 +16,12 @@ return new class extends Migration
             $table->string('body');
             $table->foreignId('post_id')->constrained('posts')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->timestamps();
+        });
+
+        Schema::table('comments', function (Blueprint $table) {
+            $table->foreign('parent_id')->references('id')->on('comments')->cascadeOnDelete();
         });
     }
 

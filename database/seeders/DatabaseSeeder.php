@@ -21,10 +21,16 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        Post::factory()
-            ->has(Comment::factory()->count(100))
+        $post = Post::factory()
+            ->has(Comment::factory()->count(50))
             ->recycle($user)
-            ->count(100)
             ->create();
+
+        $post->comments->take(10)->each(function ($comment) use ($post, $user) {
+            Comment::factory()
+                ->count(10)
+                ->recycle([$post])
+                ->create(['parent_id' => $comment->id]);
+        });
     }
 }

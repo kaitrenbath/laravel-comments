@@ -11,6 +11,9 @@
                     <div>
                         <p class="text-sm font-semibold text-slate-800">{{ $comment->user->name }}</p>
                         <p class="text-slate-800 mt-1">{{ $comment->body }}</p>
+                        @if ($comment->replies_count)
+                            <button type="button" class="text-xs font-semibold text-slate-500">Show {{ $comment->replies_count }} replies</button>
+                        @endif
                     </div>
                 </li>
             @endforeach
