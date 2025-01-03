@@ -18,8 +18,8 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->realText(240),
-            'user' => User::factory(),
+            'title' => fake()->realText(80),
+            'user_id' => User::factory(),
         ];
     }
 }

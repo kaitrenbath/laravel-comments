@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body>
-        <div class="max-w-5xl px-4 mx-auto mt-24">
-            <div class="">
-                Hello
-            </div>
-        </div>
-    </body>
-</html>
+<x-layout>
+    <h1 class="text-xl text-slate-800">{{ $post->title }}</h1>
+    <section class="border border-slate-200 mt-12">
+        <header class="py-1 px-3 border-b border-slate-100 bg-slate-50">
+            <span class="text-sm font-medium text-slate-800">Comments</span>
+        </header>
+        <ul class="divide-y divide-slate-100">
+            @foreach($post->comments as $comment)
+                <li class="flex items-start gap-x-4 p-3">
+                    <span class="block size-8 mt-0.5 rounded-md bg-slate-100"></span>
+                    <div>
+                        <p class="text-sm font-semibold text-slate-800">{{ $comment->user->name }}</p>
+                        <p class="text-slate-800 mt-1">{{ $comment->body }}</p>
+                    </div>
+                </li>
+            @endforeach
+        </ul>
+    </section>
+</x-layout>
