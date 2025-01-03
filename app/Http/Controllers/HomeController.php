@@ -12,7 +12,7 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $post = Post::with('comments')
+        $post = Post::with(['comments', 'comments.user'])
             ->latest()
             ->first();
 

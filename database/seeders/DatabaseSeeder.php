@@ -22,8 +22,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Post::factory()
-            ->has(Comment::factory()->count(10))
+            ->has(Comment::factory()->count(100))
             ->recycle($user)
+            ->count(100)
             ->create();
     }
 }
