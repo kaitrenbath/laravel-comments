@@ -5,8 +5,6 @@ namespace Database\Seeders;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Database\Factories\PostFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,15 +20,18 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $post = Post::factory()
-            ->has(Comment::factory()->count(50))
+            ->has(Comment::factory()->count(30))
             ->recycle($user)
             ->create();
 
-        $post->comments->take(10)->each(function ($comment) use ($post, $user) {
+        $post->comments->each(function ($comment) use ($post, $user) {
             Comment::factory()
-                ->count(10)
+                ->count(20)
+                ->has(Comment::factory()->count(10), 'replies')
                 ->recycle([$post])
                 ->create(['parent_id' => $comment->id]);
         });
+
+        Comment::factory()->recycle([$post])->create();
     }
 }
