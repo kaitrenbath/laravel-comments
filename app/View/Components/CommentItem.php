@@ -13,10 +13,7 @@ class CommentItem extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(
-        public Comment $comment,
-        public Collection $comments
-    ) {}
+    public function __construct(public Comment $comment) {}
 
     /**
      * Get the view / contents that represent the component.

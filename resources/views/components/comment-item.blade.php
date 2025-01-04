@@ -3,13 +3,10 @@
     <div class="flex-1">
         <p class="text-sm font-semibold text-slate-800">{{ $comment->user->name }}</p>
         <p class="text-slate-800 mt-1">{{ $comment->body }}</p>
-        @if ($replies = $comments->get($comment->id))
             <ul>
-                @foreach ($replies as $reply)
-                    <x-comment-item :comment="$reply" :comments="$comments" />
+                @foreach ($comment->replies as $reply)
+                    <x-comment-item :comment="$reply" />
                 @endforeach
             </ul>
-            @php $comments->forget($comment->id) @endphp
-        @endif
     </div>
 </li>

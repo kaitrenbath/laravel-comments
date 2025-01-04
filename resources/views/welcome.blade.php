@@ -7,7 +7,7 @@
         @if ($post->comments->isNotEmpty())
             <ul class="divide-y divide-slate-100">
                 @foreach($post->comments as $comment)
-                    <x-comment-item :comment="$comment" :comments="$comments" />
+                    <x-comment-item :comment="$comment" />
                 @endforeach
             </ul>
         @endif;
